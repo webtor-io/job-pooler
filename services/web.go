@@ -102,7 +102,7 @@ func (s *Web) Serve() error {
 func (s *Web) Close() {
 	log.Info("closing Web")
 	defer func() {
-		log.Info("web closed")
+		log.Info("Web closed")
 	}()
 	if s.ln != nil {
 		s.ln.Close()
