@@ -7,7 +7,7 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/urfave/cli v1.22.5
 	github.com/webtor-io/common-services v0.0.0-20210506124642-57d7ac936cc4
-	github.com/webtor-io/lazymap v0.0.0-20211026225627-43d8cd36cc4e
+	github.com/webtor-io/lazymap v0.0.0-20211028212131-6ba5763d2141
 )
 
 require (
