@@ -106,6 +106,10 @@ github.com/webtor-io/lazymap v0.0.0-20211028212131-6ba5763d2141 h1:WOGr1Tp0ZLr2S
 github.com/webtor-io/lazymap v0.0.0-20211028212131-6ba5763d2141/go.mod h1:za/bioTGK3VjG3+mK7/kpx0TV8++ytZkdOQ1MJ2HTjM=
 github.com/webtor-io/lazymap v0.0.0-20211028213141-48360496897a h1:fanAN71XFamyLwoT2kDE28XDIefbpmf/GqK3JEpcfmY=
 github.com/webtor-io/lazymap v0.0.0-20211028213141-48360496897a/go.mod h1:za/bioTGK3VjG3+mK7/kpx0TV8++ytZkdOQ1MJ2HTjM=
+github.com/webtor-io/lazymap v0.0.0-20211028214603-7ad35a06954f h1:hzBqCSSr+CUO4rBMF/GP0f038DFN3r0AKSlCgCp27bY=
+github.com/webtor-io/lazymap v0.0.0-20211028214603-7ad35a06954f/go.mod h1:za/bioTGK3VjG3+mK7/kpx0TV8++ytZkdOQ1MJ2HTjM=
+github.com/webtor-io/lazymap v0.0.0-20211028214942-d3e62eb50110 h1:HQd7i7MbZI0rF9EB7KMrOvpxUU0ZU0hmzCFldK9nBeI=
+github.com/webtor-io/lazymap v0.0.0-20211028214942-d3e62eb50110/go.mod h1:za/bioTGK3VjG3+mK7/kpx0TV8++ytZkdOQ1MJ2HTjM=
 go.opentelemetry.io/otel v0.13.0/go.mod h1:dlSNewoRYikTkotEnxdmuBHgzT+k/idJSfDv/FxEnOY=
 go.opentelemetry.io/otel v0.19.0/go.mod h1:j9bF567N9EfomkSidSfmMwIwIBuP37AMAIzVW85OxSg=
 go.opentelemetry.io/otel v1.0.1/go.mod h1:OPEOD4jIT2SlZPMmwT6FqZz2C0ZNdQqiWcoK6M0SNFU=

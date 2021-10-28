@@ -59,7 +59,7 @@ func (s *Web) process(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return errors.Wrapf(err, "failed to parse source url %v", u)
 	}
-	if s.jm.Has(u) {
+	if s.jm.Touch(u) {
 		w.WriteHeader(http.StatusOK)
 		return nil
 	}

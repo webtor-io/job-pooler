@@ -215,8 +215,8 @@ func (s *JobMap) get(u *url.URL) error {
 	}
 }
 
-func (s *JobMap) Has(u *url.URL) bool {
-	return s.LazyMap.Has(u.Path)
+func (s *JobMap) Touch(u *url.URL) bool {
+	return s.LazyMap.Touch(u.Path)
 }
 
 func (s *JobMap) Get(u *url.URL) error {
