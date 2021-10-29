@@ -156,10 +156,11 @@ func (s *JobMap) get(u *url.URL) error {
 	}
 	c := make(chan error)
 	if s.cfg.DoneCheckInterval > 0 && doneURL != "" {
+		dt := time.NewTicker(s.cfg.DoneCheckInterval)
+		defer dt.Stop()
 		go func() {
-			t := time.NewTicker(s.cfg.DoneCheckInterval)
 			for {
-				<-t.C
+				<-dt.C
 				r, err := s.cl.Get(doneURL)
 				if err != nil {
 					c <- errors.Wrapf(err, "failed to request done marker url=%v", doneURL)
@@ -174,10 +175,11 @@ func (s *JobMap) get(u *url.URL) error {
 		}()
 	}
 	if s.cfg.ErrorCheckInterval > 0 && errorURL != "" {
+		et := time.NewTicker(s.cfg.ErrorCheckInterval)
+		defer et.Stop()
 		go func() {
-			t := time.NewTicker(s.cfg.ErrorCheckInterval)
 			for {
-				<-t.C
+				<-et.C
 				r, err := s.cl.Get(errorURL)
 				if err != nil {
 					c <- errors.Wrapf(err, "failed to request error marker url=%v", errorURL)
