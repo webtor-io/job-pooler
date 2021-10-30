@@ -18,6 +18,7 @@ const (
 	jobConcurrencyFlag        = "concurrency"
 	jobExpireFlag             = "expire"
 	jobErrorExpireFlag        = "error-expire"
+	jobInitExpireFlag         = "init-expire"
 	jobCapacityFlag           = "capacity"
 	jobTimeoutFlag            = "timeout"
 	jobDoneCheckIntervalFlag  = "done-check-interval"
@@ -47,6 +48,12 @@ func RegisterJobFlags(f []cli.Flag) []cli.Flag {
 			Usage:  "job error expire (sec)",
 			Value:  30,
 			EnvVar: "JOB_ERROR_EXPIRE",
+		},
+		cli.IntFlag{
+			Name:   jobInitExpireFlag,
+			Usage:  "job error expire (sec)",
+			Value:  600,
+			EnvVar: "JOB_INIT_EXPIRE",
 		},
 		cli.IntFlag{
 			Name:   jobCapacityFlag,
@@ -122,6 +129,7 @@ func NewJobMap(c *cli.Context, cl *http.Client) *JobMap {
 			Concurrency: c.Int(jobConcurrencyFlag),
 			Expire:      time.Duration(c.Int(jobExpireFlag)) * time.Second,
 			ErrorExpire: time.Duration(c.Int(jobErrorExpireFlag)) * time.Second,
+			InitExpire:  time.Duration(c.Int(jobInitExpireFlag)) * time.Second,
 			Capacity:    c.Int(jobConcurrencyFlag),
 		}),
 		cfg: &JobMapConfig{
@@ -217,8 +225,19 @@ func (s *JobMap) get(u *url.URL) error {
 	}
 }
 
+func (s *JobMap) Status(u *url.URL) (lazymap.ItemStatus, bool) {
+	return s.LazyMap.Status(u.Path)
+}
+
 func (s *JobMap) Touch(u *url.URL) bool {
-	return s.LazyMap.Touch(u.Path)
+	st, ok := s.Status(u)
+	if !ok {
+		return false
+	}
+	if st == lazymap.Enqueued {
+		s.LazyMap.Touch(u.Path)
+	}
+	return true
 }
 
 func (s *JobMap) Get(u *url.URL) error {
