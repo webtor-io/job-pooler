@@ -1,7 +1,9 @@
 package main
 
 import (
+	"net"
 	"net/http"
+	"time"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
@@ -32,7 +34,15 @@ func serve(c *cli.Context) error {
 	defer probe.Close()
 
 	// Setting HTTP Client
-	cl := &http.Client{}
+	tr := &http.Transport{
+		Dial: (&net.Dialer{
+			Timeout: 30 * time.Second,
+		}).Dial,
+	}
+	cl := &http.Client{
+		Timeout:   time.Second * 30,
+		Transport: tr,
+	}
 
 	// Setting JobMap
 	jobMap := s.NewJobMap(c, cl)
