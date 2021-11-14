@@ -36,11 +36,11 @@ func serve(c *cli.Context) error {
 	// Setting HTTP Client
 	tr := &http.Transport{
 		Dial: (&net.Dialer{
-			Timeout: 30 * time.Second,
+			Timeout: 300 * time.Second,
 		}).Dial,
 	}
 	cl := &http.Client{
-		Timeout:   time.Second * 30,
+		Timeout:   time.Second * 300,
 		Transport: tr,
 	}
 
